@@ -1,0 +1,6 @@
+{
+  "name": "ViralAI",
+  "description": "Bilingual AI Video Studio for Gen Z YouTube creators. Elevate your videos with AI script writing, editing, subtitles, and voices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

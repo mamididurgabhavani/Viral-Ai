@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViralAI ⚡ మీ Creativity కి AI Power</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <!-- Google Fonts for Ultra-Modern Typography and elegant Telugu integration -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
+
+      /* Custom Theme variables mirroring electric modern aesthetics */
+      :root {
+        --bg: #0A0A0F;
+        --purple: #A855F7;
+        --pink: #EC4899;
+        --green: #22C55E;
+        --dark-gray: #12121E;
+        --light-gray: #9CA3AF;
+        --white: #FFFFFF;
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-bg: rgba(18, 18, 30, 0.7);
+        --font-display: 'Space Grotesk', 'Noto Sans Telugu', system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--white);
+        font-family: var(--font-display);
+        overflow-x: hidden;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Core Helper Layouts */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Glowing Background Orbs */
+      .orbs-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .orb {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .orb-1 {
+        background: var(--purple);
+        top: 5vh;
+        left: -100px;
+        animation: floatOrb1 15s ease-in-out infinite alternate;
+      }
+
+      .orb-2 {
+        background: var(--pink);
+        top: 60vh;
+        right: -100px;
+        animation: floatOrb2 18s ease-in-out infinite alternate;
+      }
+
+      .orb-3 {
+        background: var(--green);
+        top: 130vh;
+        left: 20%;
+        animation: floatOrb3 20s ease-in-out infinite alternate;
+      }
+
+      @keyframes floatOrb1 {
+        0% { transform: translateY(0) scale(1); }
+        100% { transform: translateY(60px) translateX(60px) scale(1.15); }
+      }
+
+      @keyframes floatOrb2 {
+        0% { transform: translateY(0) translateX(0) scale(1); }
+        100% { transform: translateY(-70px) translateX(-50px) scale(0.9); }
+      }
+
+      @keyframes floatOrb3 {
+        0% { transform: scale(0.9); }
+        100% { transform: translateY(50px) scale(1.1); }
+      }
+
+      @keyframes flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Animated Gradient Text keyframes */
+      .gradient-text {
+        background: linear-gradient(90deg, #A855F7, #EC4899, #22C55E, #A855F7);
+        background-size: 300% 300%;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: flow 6s ease infinite;
+        display: inline-block;
+      }
+
+      /* Glassmorphism Styles */
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        transition: all 0.3s ease;
+        border-radius: 20px;
+      }
+
+      .glass-interactive {
+        transition: all 0.3s ease;
+      }
+
+      .glass-interactive:hover {
+        transform: translateY(-2px);
+        border-color: rgba(236, 72, 153, 0.4);
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 16px 40px -10px rgba(168, 85, 247, 0.25);
+      }
+
+      /* Glow borders & details */
+      .glow-purple:hover {
+        border-color: rgba(168, 85, 247, 0.5);
+        box-shadow: 0 16px 40px -10px rgba(168, 85, 247, 0.3);
+      }
+      .glow-pink:hover {
+        border-color: rgba(236, 72, 153, 0.5);
+        box-shadow: 0 16px 40px -10px rgba(236, 72, 153, 0.3);
+      }
+      .glow-green:hover {
+        border-color: rgba(34, 197, 94, 0.5);
+        box-shadow: 0 16px 40px -10px rgba(34, 197, 94, 0.3);
+      }
+
+      /* Sticky Navbar */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        transition: all 0.3s ease;
+        padding: 1.25rem 0;
+      }
+
+      header.scrolled {
+        padding: 0.75rem 0;
+        background: rgba(10, 10, 15, 0.85);
+        border-bottom: 1px solid var(--glass-border);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        text-decoration: none;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: transform 0.2s ease;
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .logo span {
+        color: var(--purple);
+      }
+
+      .logo-spark {
+        animation: pulseSpark 1.5s infinite alternate;
+      }
+
+      @keyframes pulseSpark {
+        0% { filter: drop-shadow(0 0 2px var(--purple)); }
+        100% { filter: drop-shadow(0 0 12px #EC4899) scale(1.1); }
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.25rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--light-gray);
+        font-size: 0.925rem;
+        font-weight: 500;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+        position: relative;
+        padding: 0.25rem 0;
+      }
+
+      .nav-link:hover, .nav-link.active {
+        color: var(--white);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--purple), var(--pink));
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after, .nav-link.active::after {
+        width: 100%;
+      }
+
+      .nav-btn {
+        background: linear-gradient(135deg, var(--purple), #8B5CF6);
+        color: var(--white);
+        padding: 0.6rem 1.25rem;
+        border-radius: 99px;
+        font-weight: 600;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+      }
+
+      .nav-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
+      }
+
+      /* Mobile Navigation Toggle */
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--white);
+        cursor: pointer;
+        font-size: 1.5rem;
+        z-index: 101;
+      }
+
+      /* Hero Section */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding-top: 8.5rem;
+        padding-bottom: 5rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+      }
+
+      .hero-title {
+        font-size: 4.5rem;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-sub {
+        font-size: 1.35rem;
+        color: var(--light-gray);
+        max-width: 650px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* Hero Buttons & Layout */
+      .btn-container {
+        display: flex;
+        gap: 1.25rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 3.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+        color: var(--white);
+        padding: 1.1rem 2.25rem;
+        border-radius: 99px;
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary:hover {
+        transform: scale(1.06);
+        box-shadow: 0 12px 30px rgba(236, 72, 153, 0.6);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--white);
+        padding: 1.1rem 2.25rem;
+        border-radius: 99px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-weight: 700;
+        font-size: 1.05rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Social Proof Creator Avatar Stack */
+      .social-proof {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .avatar-stack {
+        display: flex;
+        align-items: center;
+      }
+
+      .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 3px solid var(--bg);
+        margin-left: -12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.825rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      }
+
+      .avatar:first-child {
+        margin-left: 0;
+      }
+
+      .avatar-purple { background: linear-gradient(135deg, #7C3AED, #A78BFA); }
+      .avatar-pink { background: linear-gradient(135deg, #DB2777, #F472B6); }
+      .avatar-green { background: linear-gradient(135deg, #059669, #34D399); }
+      .avatar-blue { background: linear-gradient(135deg, #2563EB, #60A5FA); }
+      .avatar-orange { background: linear-gradient(135deg, #EA580C, #FB923C); }
+
+      .avatar-count {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--white);
+        margin-left: -12px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        padding: 0 0.75rem;
+        border-radius: 99px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(8px);
+      }
+
+      .social-text {
+        font-size: 0.95rem;
+        color: var(--light-gray);
+        font-weight: 500;
+      }
+      
+      .social-text span {
+        color: var(--purple);
+        font-weight: 700;
+      }
+
+      /* Sections General */
+      section {
+        padding: 7rem 0;
+        position: relative;
+        z-index: 10;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4.5rem;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+      
+      .section-badge {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        border-radius: 99px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background: rgba(168, 85, 247, 0.1);
+        border: 1px solid rgba(168, 85, 247, 0.2);
+        color: #C084FC;
+        margin-bottom: 1.25rem;
+      }
+
+      /* Features section Grid Layout */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--white);
+      }
+
+      .bg-purple-light { background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); color: #C084FC; }
+      .bg-pink-light { background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); color: #F472B6; }
+      .bg-green-light { background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ADE80; }
+
+      .feature-card {
+        padding: 2.5rem 2rem;
+      }
+
+      .feature-title {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--white);
+      }
+
+      .feature-telugu {
+        font-size: 1.05rem;
+        color: var(--light-gray);
+        line-height: 1.5;
+        font-weight: 500;
+      }
+
+      /* How It Works Steps Flow */
+      .how-its-done {
+        position: relative;
+        padding: 3rem 0;
+      }
+
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        position: relative;
+      }
+
+      .connector-line {
+        position: absolute;
+        top: 25%;
+        left: 15%;
+        width: 70%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--purple), var(--pink), var(--green));
+        z-index: 1;
+        opacity: 0.5;
+      }
+
+      .step-node {
+        text-align: center;
+        position: relative;
+        z-index: 5;
+      }
+
+      .step-num-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 1.75rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 2rem;
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+      }
+
+      .step-num-1 {
+        background: #18112d;
+        border: 2px solid var(--purple);
+        color: #C084FC;
+      }
+
+      .step-num-2 {
+        background: #251221;
+        border: 2px solid var(--pink);
+        color: #F472B6;
+      }
+
+      .step-num-3 {
+        background: #0d2015;
+        border: 2px solid var(--green);
+        color: #4ADE80;
+      }
+
+      .step-eng-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--white);
+      }
+
+      .step-telugu-desc {
+        font-size: 1rem;
+        color: var(--light-gray);
+        line-height: 1.4;
+      }
+
+      .step-icon-wrapper {
+        margin-bottom: 1rem;
+      }
+
+      /* Testimonials Creators */
+      .creators-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 4.5rem;
+      }
+
+      .testimonial-card {
+        padding: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 250px;
+        position: relative;
+      }
+
+      .testimonial-content {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--white);
+        font-style: italic;
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      .testimonial-quote-icon {
+        font-size: 4rem;
+        line-height: 1;
+        color: rgba(255,255,255,0.04);
+        position: absolute;
+        top: -1.5rem;
+        left: -1rem;
+        pointer-events: none;
+      }
+
+      .creator-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .creator-avatar-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .creator-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--white);
+      }
+
+      .creator-channel {
+        font-size: 0.85rem;
+        color: var(--light-gray);
+      }
+
+      .creator-subs {
+        background: rgba(168, 85, 247, 0.15);
+        color: #C084FC;
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        margin-left: auto;
+      }
+
+      /* Stats Banner */
+      .stats-banner {
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 900px;
+        text-align: center;
+      }
+
+      .stats-flex {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .stat-val {
+        font-size: 2.25rem;
+        font-weight: 800;
+        background: linear-gradient(to right, var(--purple), var(--pink));
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .stat-lbl {
+        font-size: 0.85rem;
+        color: var(--light-gray);
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      /* Pricing Section Cards */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.25rem;
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        padding: 3rem 2.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-highlight {
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        border: 1px solid #A855F7;
+      }
+
+      .pop-badge {
+        position: absolute;
+        top: 1.5rem;
+        right: -2.5rem;
+        background: linear-gradient(135deg, var(--purple), var(--pink));
+        color: var(--white);
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.4rem 2.5rem;
+        transform: rotate(45deg);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      }
+
+      .plan-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .plan-desc {
+        color: var(--light-gray);
+        font-size: 0.95rem;
+        margin-bottom: 1.75rem;
+        min-height: 48px;
+      }
+
+      .plan-price {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.75rem;
+        color: var(--white);
+        display: flex;
+        align-items: baseline;
+      }
+
+      .plan-price span {
+        font-size: 1rem;
+        color: var(--light-gray);
+        font-weight: 500;
+      }
+
+      .plan-features {
+        list-style: none;
+        margin-bottom: 2.25rem;
+      }
+
+      .plan-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.85rem;
+        font-size: 0.95rem;
+        color: var(--white);
+      }
+
+      .feature-check-svg {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .pricing-btn {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 99px;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        cursor: pointer;
+        display: block;
+      }
+
+      .btn-pricing-inactive {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--white);
+      }
+
+      .btn-pricing-inactive:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .btn-pricing-active {
+        background: linear-gradient(135deg, var(--purple), var(--pink));
+        color: var(--white);
+        border: none;
+        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+      }
+
+      .btn-pricing-active:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6);
+      }
+
+      /* Waitlist Signup Section with bold styling */
+      .signup-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Multi-directional radiant background specifically for waitlist section */
+      .signup-bg {
+        background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.25), transparent),
+                    radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.25), transparent),
+                    rgba(18, 18, 28, 0.95);
+        border: 1.5px solid rgba(255, 255, 255, 0.1);
+        border-radius: 28px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      }
+
+      .signup-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #EC4899, #A855F7, #22C55E);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .signup-desc {
+        color: var(--light-gray);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.6;
+      }
+
+      .signup-form {
+        display: flex;
+        gap: 1rem;
+        max-width: 550px;
+        margin: 0 auto 1.5rem;
+      }
+
+      .signup-input {
+        flex: 1;
+        background: rgba(10, 10, 15, 0.61);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        padding: 1.1rem 1.5rem;
+        border-radius: 99px;
+        color: var(--white);
+        font-size: 1rem;
+        font-family: inherit;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+
+      .signup-input:focus {
+        border-color: var(--purple);
+        background: rgba(15, 15, 25, 0.9);
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+      }
+
+      .signup-btn {
+        background: #22C55E;
+        color: #0A0A0F;
+        font-weight: 800;
+        font-size: 1rem;
+        border: none;
+        padding: 0 2rem;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 4px 15px rgba(34, 197, 150, 0.3);
+      }
+
+      .signup-btn:hover {
+        background: #4ADE80;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+      }
+
+      .signup-subtext {
+        font-size: 0.875rem;
+        color: var(--light-gray);
+      }
+
+      /* Success screen panel */
+      .signup-success {
+        display: none;
+        animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      @keyframes scaleIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(34, 197, 94, 0.15);
+        border: 2px solid var(--green);
+        color: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+
+      /* Footer */
+      footer {
+        padding: 4rem 0 3rem;
+        background: #06060A;
+        border-top: 1px solid rgba(255,255,255,0.04);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .footer-logo span {
+        color: var(--purple);
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        list-style: none;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-link {
+        text-decoration: none;
+        color: var(--light-gray);
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--white);
+      }
+
+      .copyright {
+        font-size: 0.85rem;
+        color: var(--light-gray);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      /* Intersection Observer Reveal and Slide animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1),
+                    transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .reveal-delay-1 { transition-delay: 0.15s; }
+      .reveal-delay-2 { transition-delay: 0.3s; }
+      .reveal-delay-3 { transition-delay: 0.45s; }
+
+      /* Immersive Studio Demo Modal Simulator */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(5, 5, 10, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        padding: 1.5rem;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .modal-container {
+        width: 100%;
+        max-width: 850px;
+        background: var(--dark-gray);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px -10px rgba(168, 85, 247, 0.5);
+        transform: scale(0.95);
+        transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+
+      .modal-overlay.active .modal-container {
+        transform: scale(1);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.75rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .modal-title {
+        font-weight: 700;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .modal-close {
+        background: rgba(255, 255, 255, 0.05);
+        border: none;
+        color: var(--white);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .demo-player {
+        background: #000000;
+        aspect-ratio: 16/9;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* Animated simulated studio playback screen */
+      .player-placeholder {
+        text-align: center;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+      }
+
+      .player-visualizer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 0 1rem;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      .bar {
+        width: 6px;
+        background: linear-gradient(180deg, var(--green) 0%, var(--purple) 100%);
+        border-radius: 3px 3px 0 0;
+        animation: bounceBar 1.2s ease-in-out infinite alternate;
+      }
+
+      /* Differing bar animation periods to look authentic */
+      .bar:nth-child(2) { animation-duration: 0.8s; height: 30%; }
+      .bar:nth-child(3) { animation-duration: 1.5s; height: 75%; }
+      .bar:nth-child(4) { animation-duration: 1s; height: 50%; }
+      .bar:nth-child(5) { animation-duration: 1.3s; height: 60%; }
+      .bar:nth-child(6) { animation-duration: 0.9s; height: 40%; }
+      .bar:nth-child(7) { animation-duration: 1.4s; height: 80%; }
+      .bar:nth-child(8) { animation-duration: 1.1s; height: 20%; }
+
+      @keyframes bounceBar {
+        0% { transform: scaleY(0.1); }
+        100% { transform: scaleY(1.2); }
+      }
+
+      /* Responsive Media Breaks (Mobile First) */
+      @media (max-width: 1024px) {
+        .hero-title {
+          font-size: 3.5rem;
+        }
+
+        .features-grid, .pricing-grid, .creators-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .how-grid {
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          font-size: 15px;
+        }
+
+        header {
+          background: rgba(10, 10, 15, 0.9);
+          border-bottom: 1px solid var(--glass-border);
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: #0D0D14;
+          border-left: 1px solid var(--glass-border);
+          padding: 6rem 2.5rem 3rem;
+          gap: 2rem;
+          transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          align-items: flex-start;
+          box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        #hero {
+          padding-top: 7rem;
+        }
+
+        .hero-title {
+          font-size: 2.75rem;
+          line-height: 1.2;
+        }
+
+        .hero-sub {
+          font-size: 1.1rem;
+          margin-bottom: 2rem;
+        }
+
+        .section-title {
+          font-size: 2.25rem;
+        }
+
+        .features-grid, .creators-grid, .pricing-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .how-grid {
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+        }
+
+        /* Connector line becomes vertical on mobile steps flow */
+        .connector-line {
+          width: 3px;
+          height: 65%;
+          top: 8%;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .signup-container {
+          padding: 2.5rem 1.5rem;
+        }
+
+        .signup-form {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .signup-btn {
+          width: 100%;
+          padding: 1.1rem;
+          justify-content: center;
+        }
+
+        .stats-flex {
+          flex-direction: column;
+          gap: 1.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Gradient Orbs Background backdrop -->
+    <div class="orbs-container">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Sticky Header Navigation -->
+    <header id="header">
+      <div class="container nav-container">
+        <a href="#" class="logo" id="nav-logo">
+          ViralAI <span class="logo-spark">⚡</span>
+        </a>
+        
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#features" class="nav-link">Features / ఫీచర్స్</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works / ఎలా</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing / ధరలు</a></li>
+          <li><a href="#waitlist" class="nav-btn">Get Started / ప్రారంభించండి</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero">
+      <div class="container hero-content">
+        <div class="section-badge reveal">Gen Z YouTube Creators Special</div>
+        <h1 class="hero-title reveal reveal-delay-1">
+          మీ Creativity కి <br>
+          <span class="gradient-text">AI Power ఇవ్వండి</span>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          The AI-powered video studio built for YouTube creators who move fast. Stop waiting, start going viral.
+        </p>
+        
+        <div class="btn-container reveal reveal-delay-3">
+          <a href="#waitlist" class="btn-primary" id="hero-cta-main">
+            Start for Free / ఉచితంగా ప్రారంభించండి
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <button class="btn-secondary" id="watch-demo-btn">
+            Watch Demo / డెమో చూడండి
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5,3 19,12 5,21"></polygon></svg>
+          </button>
+        </div>
+
+        <div class="social-proof reveal reveal-delay-3">
+          <div class="avatar-stack">
+            <div class="avatar avatar-purple">AK</div>
+            <div class="avatar avatar-pink">SR</div>
+            <div class="avatar avatar-green">VT</div>
+            <div class="avatar avatar-blue">MP</div>
+            <div class="avatar avatar-orange">DB</div>
+            <div class="avatar-count">10K+</div>
+          </div>
+          <span class="social-text"><span>10,000+ creators</span> already generating viral content here!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. FEATURES SECTION -->
+    <section id="features">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">ViralAI Studio Tools</span>
+          <h2 class="section-title">అన్నీ ఒకే చోట — Everything in One Place</h2>
+        </div>
+
+        <div class="features-grid">
+          
+          <!-- Card 1: AI Script Writing -->
+          <div class="glass glass-interactive glow-purple feature-card reveal">
+            <div class="card-icon bg-purple-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            </div>
+            <h3 class="feature-title">AI Script Writing</h3>
+            <p class="feature-telugu">మీ idea చెప్పండి, script రెడీ</p>
+          </div>
+
+          <!-- Card 2: Auto Video Editing -->
+          <div class="glass glass-interactive glow-pink feature-card reveal reveal-delay-1">
+            <div class="card-icon bg-pink-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <h3 class="feature-title">Auto Video Editing</h3>
+            <p class="feature-telugu">Footage upload చేయండి, AI edit చేస్తుంది</p>
+          </div>
+
+          <!-- Card 3: AI Voiceover & Dubbing -->
+          <div class="glass glass-interactive glow-green feature-card reveal reveal-delay-2">
+            <div class="card-icon bg-green-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v1a7 7 0 0 1-14 0v-1"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            </div>
+            <h3 class="feature-title">AI Voiceover & Dubbing</h3>
+            <p class="feature-telugu">100+ voices, multiple languages</p>
+          </div>
+
+          <!-- Card 4: Text-to-Video Generation -->
+          <div class="glass glass-interactive glow-pink feature-card reveal">
+            <div class="card-icon bg-pink-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+            </div>
+            <h3 class="feature-title">Text-to-Video Generation</h3>
+            <p class="feature-telugu">Text టైప్ చేయండి, video తయారవుతుంది</p>
+          </div>
+
+          <!-- Card 5: Auto Captions & Subtitles -->
+          <div class="glass glass-interactive glow-green feature-card reveal reveal-delay-1">
+            <div class="card-icon bg-green-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M7 10h4"></path><path d="M13 14h4"></path><path d="M7 14h4"></path><path d="M13 10h4"></path></svg>
+            </div>
+            <h3 class="feature-title">Auto Captions & Subtitles</h3>
+            <p class="feature-telugu">ఆటోమేటిక్ captions అన్ని భాషల్లో</p>
+          </div>
+
+          <!-- Card 6: Trending Audio Suggestions -->
+          <div class="glass glass-interactive glow-purple feature-card reveal reveal-delay-2">
+            <div class="card-icon bg-purple-light">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+            </div>
+            <h3 class="feature-title">Trending Audio Suggestions</h3>
+            <p class="feature-telugu">Trending sounds ని AI suggest చేస్తుంది</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS SECTION -->
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Fast Workflow</span>
+          <h2 class="section-title">How It Works — ఎలా పని చేస్తుంది</h2>
+        </div>
+
+        <div class="how-its-done" id="step-flow-zone">
+          <div class="connector-line"></div>
+          
+          <div class="how-grid">
+            
+            <!-- Step 1 -->
+            <div class="step-node reveal">
+              <div class="step-num-circle step-num-1">01</div>
+              <div class="step-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-dasharray="2 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500" style="color:var(--purple);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              </div>
+              <h3 class="step-eng-title">Upload or Describe Idea</h3>
+              <p class="step-telugu-desc">మీ idea చెప్పండి లేదా footage upload చేయండి</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-node reveal reveal-delay-1">
+              <div class="step-num-circle step-num-2">02</div>
+              <div class="step-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--pink);"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h3 class="step-eng-title">AI Generates Your Video</h3>
+              <p class="step-telugu-desc">AI మీ video "మిలిసెకన్లలో" create చేస్తుంది</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-node reveal reveal-delay-2">
+              <div class="step-num-circle step-num-3">03</div>
+              <div class="step-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green);"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+              </div>
+              <h3 class="step-eng-title">Export & Go Viral</h3>
+              <p class="step-telugu-desc">Export చేసి social media లో viral అవ్వండి</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CREATOR SHOWCASE / GALLERY -->
+    <section id="showcase">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Creator Love</span>
+          <h2 class="section-title">Creators Love ViralAI ❤️</h2>
+        </div>
+
+        <div class="creators-grid">
+          
+          <!-- Testimonial 1 -->
+          <div class="glass glass-interactive testimonial-card reveal">
+            <span class="testimonial-quote-icon">“</span>
+            <p class="testimonial-content">
+              "The AI Script-to-Video tool is a cheat code! Saved me 15 hours of work and the editing style keeps my retention crazy high."
+            </p>
+            <div class="creator-meta">
+              <div class="creator-avatar-circle" style="background: linear-gradient(135deg, #A855F7, #EC4899); color: var(--white)">అ</div>
+              <div>
+                <h4 class="creator-name">అవినాష్</h4>
+                <p class="creator-channel">@AvinashVlogs</p>
+              </div>
+              <span class="creator-subs">250K Subs</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="glass glass-interactive testimonial-card reveal reveal-delay-1">
+            <span class="testimonial-quote-icon">“</span>
+            <p class="testimonial-content">
+              "I translate my tech lessons using their AI Voice and automatic dubbed local languages. My reach quadrupled in weeks!"
+            </p>
+            <div class="creator-meta">
+              <div class="creator-avatar-circle" style="background: linear-gradient(135deg, #3B82F6, #22C55E); color: var(--white)">స</div>
+              <div>
+                <h4 class="creator-name">సౌమ్య</h4>
+                <p class="creator-channel">@SoumyaTech</p>
+              </div>
+              <span class="creator-subs">1.2M Subs</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="glass glass-interactive testimonial-card reveal reveal-delay-2">
+            <span class="testimonial-quote-icon">“</span>
+            <p class="testimonial-content">
+              "Telugu captions are auto-generated perfectly. The trending suggestions audio keeps my shorts inside the YT algorithm."
+            </p>
+            <div class="creator-meta">
+              <div class="creator-avatar-circle" style="background: linear-gradient(135deg, #EC4899, #F59E0B); color: var(--white)">రా</div>
+              <div>
+                <h4 class="creator-name">రాకేష్</h4>
+                <p class="creator-channel">@RakeshExplores</p>
+              </div>
+              <span class="creator-subs">480K Subs</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Global Stats bar -->
+        <div class="glass stats-banner reveal">
+          <div class="stats-flex">
+            <div class="stat-item">
+              <span class="stat-val">2M+</span>
+              <span class="stat-lbl">Videos Created</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val">10K+</span>
+              <span class="stat-lbl">Creators Onboard</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val">4.9★</span>
+              <span class="stat-lbl">Average Rating</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. PRICING SECTION -->
+    <section id="pricing">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">Pricing Options</span>
+          <h2 class="section-title">Pricing — మీకు నచ్చిన Plan తీసుకోండి</h2>
+        </div>
+
+        <div class="pricing-grid">
+
+          <!-- Free Tier -->
+          <div class="glass glass-interactive pricing-card reveal">
+            <div>
+              <h3 class="plan-name">Free</h3>
+              <p class="plan-desc">Basic features, 5 videos/month</p>
+              <div class="plan-price">$0 <span>/ mo</span></div>
+              
+              <ul class="plan-features">
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  5 high-quality AI renders
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  AI Script generation
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Standard video exports
+                </li>
+              </ul>
+            </div>
+            
+            <a href="#waitlist" class="pricing-btn btn-pricing-inactive">Get Started Free</a>
+          </div>
+
+          <!-- Pro Tier (Highlighted) -->
+          <div class="glass pricing-card pricing-highlight reveal reveal-delay-1" id="pro-card">
+            <span class="pop-badge">MOST POPULAR</span>
+            <div>
+              <h3 class="plan-name" style="color: var(--purple);">Pro ⚡</h3>
+              <p class="plan-desc">Unlimited videos, all AI features, priority export speed</p>
+              <div class="plan-price">$19 <span>/ mo</span></div>
+              
+              <ul class="plan-features">
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Unlimited AI rendering
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  All 100+ Premium Voices
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Instant 4K Priority Export
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Auto Bilingual Subtitles
+                </li>
+              </ul>
+            </div>
+            
+            <a href="#waitlist" class="pricing-btn btn-pricing-active">Go Pro / Pro తీసుకోండి</a>
+          </div>
+
+          <!-- Team Tier -->
+          <div class="glass glass-interactive pricing-card reveal reveal-delay-2">
+            <div>
+              <h3 class="plan-name">Team</h3>
+              <p class="plan-desc">Up to 10 members, brand kits, advanced channel analytics</p>
+              <div class="plan-price">$49 <span>/ mo</span></div>
+              
+              <ul class="plan-features">
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Up to 10 Creator seats
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Shared visual Brand kit
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Advanced group analytics
+                </li>
+                <li class="plan-feature-item">
+                  <svg class="feature-check-svg text-green-500" style="color:var(--green);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Dedicated account manager
+                </li>
+              </ul>
+            </div>
+            
+            <a href="#waitlist" class="pricing-btn btn-pricing-inactive">Start Team Plan</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. WAITLIST / SIGNUP CTA SECTION -->
+    <section id="waitlist">
+      <div class="container">
+        
+        <div class="signup-container signup-bg reveal" id="waitlist-box">
+          
+          <!-- Normal Input Phase -->
+          <div id="signup-interactive-view">
+            <span class="section-badge" style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.3); color: #4ADE80;">Exclusive Access</span>
+            <h2 class="signup-title">Ready to Go Viral? / Viral అవ్వడానికి Ready గా ఉన్నారా?</h2>
+            <p class="signup-desc">
+              Get premium early access to ViralAI Video Studio. Join 10,000+ top YouTube shorts and longform creators scaling their workflow today.
+            </p>
+            
+            <form class="signup-form" id="waitlist-form">
+              <input type="email" class="signup-input" placeholder="Enter your email to join / ఈమెయిల్ ఇవ్వండి" required id="waitlist-email">
+              <button type="submit" class="signup-btn">
+                Join Waitlist / చేరండి
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </form>
+            <p class="signup-subtext">Join 10,000+ creators. No spam. Unsubscribe anytime.</p>
+          </div>
+
+          <!-- Successful Signup state -->
+          <div class="signup-success" id="signup-success-view">
+            <div class="success-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h2 class="signup-title" style="background: linear-gradient(to right, #4ADE80, #22C55E); -webkit-background-clip: text; color: transparent;">Welcome to the Clan! 🎉</h2>
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">మీరు విజయవంతంగా రిజిస్టర్ అయ్యారు!</h3>
+            <p class="signup-desc" style="margin-bottom: 1.5rem;">
+              You have secured early access priority on <strong id="saved-email-placeholder" style="color:var(--green)">you@example.com</strong>. We'll ping you with your invite code immediately.
+            </p>
+            <button class="btn-secondary" id="reset-waitlist-btn">Register another email</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- IMMERSION STUDIO VIDEO PLAYER MODAL -->
+    <div class="modal-overlay" id="demo-modal">
+      <div class="modal-container">
+        
+        <div class="modal-header">
+          <div class="modal-title">
+            <span style="color:var(--purple); font-size:1.25rem;">⚡</span>
+            <span>ViralAI Video Studio Simulation Demo</span>
+          </div>
+          <button class="modal-close" id="modal-close-btn" aria-label="Close Demo Player">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="demo-player">
+          <div class="player-placeholder">
+            <div class="success-icon" style="background:rgba(168, 85, 247, 0.2); border-color:#EC4899; color:#A855F7; margin-bottom: 0px; animation: pulseSpark 2s ease infinite alternate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="5,3 19,12 5,21"></polygon></svg>
+            </div>
+            <div>
+              <p style="font-size: 1.25rem; font-weight: 700; background: linear-gradient(to right, #EC4899, #A855F7); -webkit-background-clip: text; color: transparent;">ViralAI Studio Engine Ready</p>
+              <p style="color:var(--light-gray); font-size:0.9rem; margin-top:0.25rem;">Processing test timeline... Dubbing to Telugu... Auto-cutting shorts...</p>
+            </div>
+            
+            <button class="btn-primary" id="btn-demo-start-simulation" style="padding: 0.75rem 1.5rem; font-size:0.95rem;">
+              Click to compile demo render
+            </button>
+          </div>
+
+          <!-- Simulated Sound Waves visually -->
+          <div class="player-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar text-pink-500" style="background:var(--pink)"></div>
+            <div class="bar text-pink-500" style="background:var(--pink)"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        
+        <div class="footer-logo">
+          ViralAI <span>⚡</span>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#features" class="footer-link">Features</a></li>
+          <li><a href="#how-it-works" class="footer-link">How it Works</a></li>
+          <li><a href="#pricing" class="footer-link">Pricing Plans</a></li>
+          <li><a href="#waitlist" class="footer-link">Join Waitlist</a></li>
+        </ul>
+
+        <div class="copyright">
+          <p>© 2025 ViralAI. Built for Creators. / క్రియేటర్స్ కోసం ప్రత్యేకంగా రూపొందించబడింది.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.75rem; color: #555562;">Secure offline persistence enabled. Terms and safety guidelines apply.</p>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- INTERACTION SCRIPTS -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        // Sticky header styling on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+
+        // Mobile Menu Sliding drawer 
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinksList = document.getElementById('nav-links');
+        
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navLinksList.classList.toggle('active');
+        });
+
+        // Close mobile drawer when clicking links
+        const navLinks = document.querySelectorAll('.nav-link, .nav-btn');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navLinksList.classList.remove('active');
+          });
+        });
+
+        // Close mobile drawer when clicking anywhere outside
+        document.addEventListener('click', (e) => {
+          if (!navLinksList.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinksList.classList.remove('active');
+          }
+        });
+
+        // Section entrance animations with Intersection Observer
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.12
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              // Optionally unobserve after animating
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => {
+          revealObserver.observe(el);
+        });
+
+        // Smooth scroll section highlighting in Navbar
+        const scrollSections = document.querySelectorAll('section');
+        const headerOffset = 100;
+
+        window.addEventListener('scroll', () => {
+          let currentId = '';
+          const scrollPosition = window.scrollY + headerOffset + 50;
+
+          scrollSections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+              currentId = section.getAttribute('id');
+            }
+          });
+
+          const links = document.querySelectorAll('.nav-link');
+          links.forEach(link => {
+            link.classList.remove('active');
+            const hrefAttr = link.getAttribute('href');
+            if (hrefAttr === '#' + currentId) {
+              link.classList.add('active');
+            }
+          });
+        });
+
+        // Waitlist interactive form handler with Cache checks
+        const waitlistForm = document.getElementById('waitlist-form');
+        const emailInput = document.getElementById('waitlist-email');
+        const interactiveView = document.getElementById('signup-interactive-view');
+        const successView = document.getElementById('signup-success-view');
+        const savedPlaceholder = document.getElementById('saved-email-placeholder');
+        const resetBtn = document.getElementById('reset-waitlist-btn');
+
+        // Check if already in waitlist local cache
+        const CachedEmail = localStorage.getItem('viral_ai_waitlist_email');
+        if (CachedEmail) {
+          savedPlaceholder.textContent = CachedEmail;
+          interactiveView.style.display = 'none';
+          successView.style.display = 'block';
+        }
+
+        waitlistForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = emailInput.value.trim();
+          if (email) {
+            // Save inside local storage context
+            localStorage.setItem('viral_ai_waitlist_email', email);
+            savedPlaceholder.textContent = email;
+            
+            // Seamless visual transition inside glass wrapper
+            interactiveView.style.opacity = 0;
+            setTimeout(() => {
+              interactiveView.style.display = 'none';
+              successView.style.display = 'block';
+              successView.style.opacity = 1;
+            }, 300);
+          }
+        });
+
+        // Support registering with another email
+        resetBtn.addEventListener('click', () => {
+          localStorage.removeItem('viral_ai_waitlist_email');
+          successView.style.display = 'none';
+          interactiveView.style.display = 'block';
+          interactiveView.style.opacity = 1;
+          emailInput.value = '';
+          emailInput.focus();
+        });
+
+        // IMMERSIVE VIDEO MODAL SYSTEM
+        const watchDemoBtn = document.getElementById('watch-demo-btn');
+        const demoModal = document.getElementById('demo-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const simBtn = document.getElementById('btn-demo-start-simulation');
+
+        const openModal = () => {
+          demoModal.classList.add('active');
+          document.body.style.overflow = 'hidden'; // block outer scroll
+        };
+
+        const closeModal = () => {
+          demoModal.classList.remove('active');
+          document.body.style.overflow = ''; // restore scroll
+        };
+
+        watchDemoBtn.addEventListener('click', openModal);
+        modalCloseBtn.addEventListener('click', closeModal);
+        
+        // Close modal on outer click
+        demoModal.addEventListener('click', (e) => {
+          if (e.target === demoModal) {
+            closeModal();
+          }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && demoModal.classList.contains('active')) {
+            closeModal();
+          }
+        });
+
+        // Playful simulation inside demo player
+        simBtn.addEventListener('click', () => {
+          simBtn.textContent = '⚡ RENDER SUCCESS - VIRAL COMPLETED';
+          simBtn.style.background = '#22C55E';
+          simBtn.style.color = '#000000';
+          
+          const textEl = simBtn.previousElementSibling.querySelector('p');
+          if (textEl) {
+            textEl.textContent = '🔥 1080p Gen-Z Editing Style Applied in 0.4s!';
+            textEl.style.color = '#22C55E';
+          }
+          
+          const descEl = simBtn.previousElementSibling.querySelector('p:last-child');
+          if (descEl) {
+            descEl.textContent = 'Telugu Subtitles matched perfectly. Multi-language dub complete.';
+          }
+
+          // Pump up the visualizer height animations
+          const bars = document.querySelectorAll('.bar');
+          bars.forEach((bar, index) => {
+            bar.style.animationDuration = (0.3 + Math.random() * 0.5) + 's';
+          });
+
+          setTimeout(() => {
+            simBtn.textContent = 'Regenerate video model';
+            simBtn.style.background = '';
+            simBtn.style.color = '';
+          }, 3500);
+        });
+
+      });
+    </script>
+  </body>
+</html>
